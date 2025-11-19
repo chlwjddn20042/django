@@ -6,7 +6,6 @@ pipeline {
         IMAGE_NAME            = 'chlwjddn/django'  // Docker Hub 리포지토리 이름
     }
 
-    // Git 변경 감지 트리거
     triggers {
         // 1분마다 Git 레포 변경 여부 체크
         pollSCM('H/1 * * * *')
@@ -22,7 +21,6 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    // Jenkins 빌드 번호를 태그로 사용
                     def imageTag = "${env.BUILD_NUMBER}"
                     bat """
                     docker build -t ${IMAGE_NAME}:${imageTag} -t ${IMAGE_NAME}:latest .
