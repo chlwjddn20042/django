@@ -31,4 +31,4 @@ ENV DJANGO_SETTINGS_MODULE=config.settings
 
 # 9. 컨테이너 실행 명령: gunicorn
 CMD ["gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8000"]
-# trigger jenkins by poll scm
+# trigger jenkins
