@@ -2,8 +2,14 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_CREDENTIALS = 'dockerhub-cred'     // Docker Hub 크리덴셜 ID
-        IMAGE_NAME = 'chlwjddn/django'               // Docker Hub 리포지토리 이름
+        DOCKERHUB_CREDENTIALS = 'dockerhub-cred'   // Docker Hub 크리덴셜 ID
+        IMAGE_NAME            = 'chlwjddn/django'  // Docker Hub 리포지토리 이름
+    }
+
+    // Git 변경 감지 트리거
+    triggers {
+        // 1분마다 Git 레포 변경 여부 체크
+        pollSCM('H/1 * * * *')
     }
 
     stages {
@@ -54,3 +60,4 @@ pipeline {
         }
     }
 }
+
